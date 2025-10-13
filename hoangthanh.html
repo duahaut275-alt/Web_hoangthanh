@@ -1,0 +1,209 @@
+<!-- save as cute.html and open in browser -->
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mèo siêu cute 🐱💕</title>
+<style>
+  :root{
+    --bg-a: #fff1f8;
+    --bg-b: #fef6e4;
+    --accent: #ff8fab;
+    --accent-2: #ffd28f;
+    --card: rgba(255,255,255,0.7);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(135deg,var(--bg-a),var(--bg-b));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  .scene{
+    width:min(880px,95vw);
+    max-width:900px;
+    background: var(--card);
+    border-radius:24px;
+    box-shadow: 0 10px 30px rgba(23,15,40,0.12);
+    padding:28px;
+    display:grid;
+    grid-template-columns: 1fr 320px;
+    gap:20px;
+    align-items:center;
+  }
+
+  /* left: text + controls */
+  .panel{
+    padding:10px 20px;
+  }
+  h1{
+    margin:0 0 8px 0;
+    font-size:28px;
+    letter-spacing:0.2px;
+    color:#41223a;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  p.lead{
+    margin:0 0 18px 0;
+    color:#6a4458;
+    line-height:1.4;
+  }
+
+  .controls{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:8px;
+  }
+  .btn{
+    border:0;
+    background:linear-gradient(180deg,var(--accent),#ff6b94);
+    color:white;
+    padding:10px 14px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+    box-shadow: 0 6px 14px rgba(255,107,148,0.18);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn.alt{
+    background:transparent;
+    color:#41223a;
+    border:2px dashed rgba(65,34,58,0.12);
+    box-shadow:none;
+  }
+
+  /* right: cute cat card */
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));
+    border-radius:18px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+  }
+  .kitty-wrap{
+    width:220px;
+    height:220px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  /* simple floating animation */
+  .floating{
+    animation: floaty 3s ease-in-out infinite;
+  }
+  @keyframes floaty{
+    0%{transform:translateY(0) rotate(-1deg)}
+    50%{transform:translateY(-10px) rotate(1deg)}
+    100%{transform:translateY(0) rotate(-1deg)}
+  }
+
+  /* heart particle style */
+  .heart{
+    position:absolute;
+    width:22px;
+    height:22px;
+    transform-origin:center;
+    pointer-events:none;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 6px 10px rgba(255,62,120,0.22));
+  }
+
+  .badge{
+    font-size:14px;
+    color:#6a4458;
+    background:rgba(255,255,255,0.6);
+    padding:6px 10px;
+    border-radius:999px;
+    box-shadow: 0 4px 10px rgba(85,60,80,0.06);
+  }
+
+  /* footer: credits */
+  .small{
+    font-size:12px;
+    color:#755a6a;
+    opacity:.85;
+  }
+
+  /* responsive */
+  @media (max-width:780px){
+    .scene{grid-template-columns: 1fr; padding:18px}
+    .kitty-wrap{width:180px;height:180px}
+  }
+</style>
+</head>
+<body>
+  <main class="scene" role="main" aria-label="Màn hình mèo siêu cute">
+    <section class="panel" aria-hidden="false">
+      <h1>Chào Oanh Lợn! <span style="font-size:20px">🐱💖</span></h1>
+      <p class="lead">Một mã nhỏ để vui vẻ: chạm vào chú mèo để tạo tim, bấm nút để đổi nền, và xem chú mèo lắc lư thật dễ thương.</p>
+
+      <div class="controls" role="toolbar" aria-label="Controls">
+        <button id="btn-color" class="btn" title="Đổi màu nền">Đổi màu nền 🎨</button>
+        <button id="btn-meow" class="btn alt" title="Gọi chú mèo">Gọi mèo — Meow 🐾</button>
+        <button id="btn-reset" class="btn alt" title="Về mặc định">Về mặc định ♻️</button>
+      </div>
+
+      <div style="height:14px"></div>
+      <div class="small">Gợi ý: chạm/nhấp vào mèo nhiều lần để tạo mưa tim!</div>
+    </section>
+
+    <aside class="card" aria-label="Cute card">
+      <div class="kitty-wrap" id="kittyWrap" aria-hidden="false" tabindex="0" role="button">
+        <!-- SVG mèo kawaii -->
+        <svg id="kitty" class="floating" viewBox="0 0 220 220" width="220" height="220" xmlns="http://www.w3.org/2000/svg" aria-labelledby="kittyTitle kittyDesc" role="img">
+          <title id="kittyTitle">Mèo siêu cute</title>
+          <desc id="kittyDesc">Một chú mèo màu pastel với má ửng hồng và đôi mắt lấp lánh</desc>
+
+          <!-- body -->
+          <ellipse cx="110" cy="125" rx="70" ry="62" fill="#fff" stroke="#ffdfe6" stroke-width="6"/>
+          <!-- head -->
+          <circle cx="110" cy="70" r="54" fill="#fff" stroke="#ffdfe6" stroke-width="6"/>
+          <!-- ears -->
+          <path d="M72 40 L56 12 L88 35 Z" fill="#fff" stroke="#ffdfe6" stroke-width="5"/>
+          <path d="M148 40 L164 12 L132 35 Z" fill="#fff" stroke="#ffdfe6" stroke-width="5"/>
+          <!-- inner ear -->
+          <path d="M75 35 L64 20 L85 33 Z" fill="#ffd1e0" opacity="0.9"/>
+          <path d="M145 35 L156 18 L136 33 Z" fill="#ffd1e0" opacity="0.9"/>
+
+          <!-- eyes -->
+          <g id="eyes" transform="translate(0,6)">
+            <ellipse cx="92" cy="72" rx="10" ry="14" fill="#2b1b2b"/>
+            <ellipse cx="128" cy="72" rx="10" ry="14" fill="#2b1b2b"/>
+            <!-- little sparkles -->
+            <circle cx="87" cy="66" r="3.2" fill="#fff"/>
+            <circle cx="123" cy="66" r="3.2" fill="#fff"/>
+          </g>
+
+          <!-- cheeks -->
+          <circle cx="82" cy="88" r="8.5" fill="#ffb6c1" opacity="0.95"/>
+          <circle cx="138" cy="88" r="8.5" fill="#ffb6c1" opacity="0.95"/>
+
+          <!-- mouth -->
+          <path d="M110 92 q6 8 12 10" stroke="#8b4a5a" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+          <path d="M110 92 q-6 8 -12 10" stroke="#8b4a5a" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+          <!-- nose -->
+          <ellipse cx="110" cy="86" rx="4" ry="3" fill="#ff8fab"/>
+
+          <!-- little paw (front) -->
+          <g id="paw" transform="translate(58,150)">
+            <ellipse cx="18" cy="10" rx="22" ry="12" fill="#fff" stroke="#ffdfe6" stroke-width="5"/>
+            <circle cx="8" cy="6" r="4.2" fill="#ffd1e0"/>
+            <circle cx="22" cy="6" r="4.2" fill="#ffd1e0"/>
+            <circle cx="34" cy="6" r="4.2"
