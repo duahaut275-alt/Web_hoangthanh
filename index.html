@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Giới thiệu — Hoàng Đức Thành</title>
+  <style>
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --card:#0b1220;
+      --accent:#5eead4;
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; min-height:100vh; background:linear-gradient(180deg,#071029 0%, #081025 60%); color:#e6eef6; display:flex; align-items:center; justify-content:center; padding:32px;
+    }
+
+    .card{
+      width:100%; max-width:900px; background:linear-gradient(180deg,var(--card), #071026); border-radius:var(--radius); box-shadow:0 10px 30px rgba(2,6,23,0.6); overflow:hidden; display:grid; grid-template-columns: 320px 1fr; gap:0;
+    }
+
+    /* left column */
+    .profile{
+      padding:28px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); display:flex; flex-direction:column; gap:20px; align-items:center; text-align:center;
+    }
+    .avatar{width:140px; height:140px; border-radius:50%; background:linear-gradient(135deg,var(--accent), #60a5fa); display:flex; align-items:center; justify-content:center; color:#052027; font-weight:700; font-size:48px; box-shadow:0 6px 18px rgba(94,234,212,0.12);}
+    h1{margin:0; font-size:20px}
+    .meta{color:var(--muted); font-size:14px}
+    .tags{display:flex; gap:8px; flex-wrap:wrap; justify-content:center}
+    .tag{background:var(--glass); padding:6px 10px; border-radius:999px; font-size:13px; color:var(--muted)}
+
+    /* right column */
+    .content{padding:28px 32px;}
+    .section{margin-bottom:18px}
+    .section h2{margin:0 0 8px 0; font-size:16px}
+    .about{color:#cfe6f3; line-height:1.6}
+    .info-row{display:flex; gap:12px; align-items:flex-start; margin-top:8px}
+    .skill-list{display:flex; gap:10px; flex-wrap:wrap}
+    .skill{background:rgba(255,255,255,0.03); padding:8px 10px; border-radius:10px; font-size:13px}
+
+    .contact a{display:inline-block; margin-right:12px; text-decoration:none; color:var(--accent); font-weight:600}
+
+    .footer{display:flex; justify-content:space-between; align-items:center; margin-top:18px}
+    .btn{background:linear-gradient(90deg,var(--accent), #60a5fa); color:#042022; padding:10px 14px; border-radius:12px; font-weight:700; text-decoration:none}
+
+    /* responsive */
+    @media (max-width:820px){
+      .card{grid-template-columns:1fr;}
+      .profile{flex-direction:row; padding:16px; align-items:center}
+      .avatar{width:88px;height:88px;font-size:28px}
+      .content{padding:18px}
+      .footer{flex-direction:column; gap:12px; align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <aside class="profile">
+      <div class="avatar">HT</div>
+      <div>
+        <h1>Hoàng Đức Thành</h1>
+        <div class="meta">Đại học Đại Nam — Lớp: CNTT 19-05</div>
+        <div style="height:10px"></div>
+        <div class="tags">
+          <div class="tag">Sinh viên CNTT</div>
+          <div class="tag">Web Developer</div>
+          <div class="tag">Thiết kế UI</div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="section about">
+        <h2>Giới thiệu ngắn</h2>
+        <p>Tôi là Hoàng Đức Thành — sinh viên ngành Công nghệ Thông tin tại Đại học Đại Nam. Tôi đam mê phát triển web, học hỏi các công nghệ mới và tham gia dự án nhóm. Tôi thích làm giao diện đẹp, tối ưu trải nghiệm người dùng và học thêm về IoT.</p>
+      </div>
+
+      <div class="section">
+        <h2>Học vấn</h2>
+        <div class="info-row">
+          <div>
+            <strong>Đại học Đại Nam</strong>
+            <div class="meta">Ngành: Công nghệ thông tin — Lớp: CNTT 19-05</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Kỹ năng & sở thích</h2>
+        <div class="skill-list">
+          <div class="skill">HTML</div>
+          <div class="skill">CSS</div>
+          <div class="skill">JavaScript</div>
+          <div class="skill">React (cơ bản)</div>
+          <div class="skill">SQL</div>
+          <div class="skill">Thiết kế UI/UX</div>
+        </div>
+      </div>
+
+      <div class="section contact">
+        <h2>Liên hệ</h2>
+        <div class="meta">Email: <a href="mailto:hoangducthanh131@example.com">hoangducthanh131@example.com</a> — SĐT: 0xxxxxxxx</div>
+      </div>
+
+      <div class="footer">
+        <a class="btn" href="#" download="CV_HoangDucThanh.pdf">Tải CV</a>
+        <div style="color:var(--muted); font-size:13px">Cần chỉnh thông tin? Mở file .html và thay nội dung phần text.</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
